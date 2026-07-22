@@ -12,14 +12,28 @@ permissions:
 jobs:
   dast:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start application
+        run: |
+          node src/server.js &
+          sleep 20
 
       - name: Run OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.12.0
         with:
-          target: 'http://localhost:8080'
-          cmd_options: '-a -j'
+          target: "http://localhost:4000"
+          cmd_options: "-a -j"
 
       - name: Run Playwright headless browser scan
         run: |
