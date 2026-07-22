@@ -1,8 +1,10 @@
-name: Auto Merge Dependabot PRs on:
+name: Auto Merge Dependabot PRs
+
+ on:
      pull_request:
        types: [opened, synchronize]
 
-   jobs:
+   jobs:sssss
      auto-merge:
        runs-on: ubuntu-latest
        if: github.actor == 'dependabot[bot]'
