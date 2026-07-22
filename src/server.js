@@ -13,16 +13,6 @@ applySecurityHeaders(app);
 app.use(applyCorrelationContext);
 
 app.post("/api/login", async (req, res) => {
-<<<<<<< Updated upstream
-    const { email } = req.body;
-    const user = await findUserByEmail(email);
-    logUserLogin(email, !!user, req.correlation_id);
-
-    if (!user)
-        return res.status(401).json({ error: "Invalid credentials" });
-
-    res.json({ message: "Login successful" });
-=======
   const { email } = req.body;
   const user = await findUserByEmail(email);
   logUserLogin(email, !!user, req.correlation_id);
@@ -32,22 +22,16 @@ app.post("/api/login", async (req, res) => {
   }
 
   res.json({ message: "Login successful" });
->>>>>>> Stashed changes
 });
 
 app.post("/api/register", async (req, res) => {
-    const { email, passwordHash } = req.body;
-    const user = await createUser(email, passwordHash, req.correlation_id);
-    res.status(201).json(user);
+  const { email, passwordHash } = req.body;
+  const user = await createUser(email, passwordHash, req.correlation_id);
+  res.status(201).json(user);
 });
 
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-<<<<<<< Updated upstream
-    console.log(`Server running on port ${PORT}`);
-});
-=======
   console.log(`Server running on port ${PORT}`);
 });
->>>>>>> Stashed changes
